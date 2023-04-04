@@ -21,9 +21,11 @@ ChartJS.register(
     responsive: true,
   };
 
-function Chart({ data }) {
+function Chart({ data = [] }) {
     
 return <Bar options={options} data={data} />;
 
 }
+
+
 export default Chart;
