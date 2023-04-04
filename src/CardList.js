@@ -1,21 +1,25 @@
 import React, {useState, useEffect} from 'react';
 import {Avatar, Card, Divider} from 'antd';
 import moment from 'moment';
-import {users} from './CardListItem';
-import LogData from './threedata';
+import {users} from './userData';
+import LogData from './threeData';
 import Chart from "./Chart";
 import {Select} from 'antd';
 
 const {Meta} = Card;
 
-function CardList() {
+const CardList = () => {
     const [sorting, setSorting] = useState(null);
     const [userList, setUserList] = useState([]);
+    const [prevUserList, setPrevUserList] = useState([]);
 
 
     useEffect(() => {
-        let sortedCards = userList;
-        if (sorting) {
+        let sortedCards = [];
+        if(sorting === ''){
+            setUserList([...prevUserList]);
+        }
+        if (sorting !== '') {
             sortedCards = [...userList].sort((a, b) => {
                 switch (sorting) {
                     case 'name':
@@ -32,10 +36,14 @@ function CardList() {
             });
             setUserList(sortedCards)
         }
-    }, [sorting, userList]);
+    }, [sorting]);
 
 
     useEffect(() => {
+        getUserData();
+    }, []);
+
+    const getUserData = () => {
         const sortedArray = users.map(user => {
             const {values, labels} = getChartData('conversion', user.id);
             return {
@@ -46,11 +54,12 @@ function CardList() {
                 revenue: getRevenue(user.id).toFixed(2),
                 labels: labels,
                 values: values,
-                allValue: {labels, datasets: [{ data: values, backgroundColor: 'rgba(53, 162, 235, 0.5)',}]}
+                allValue: {labels, datasets: [{ data: values, backgroundColor: 'rgba(53, 162, 235, 0.5)'}]}
             }
-        })
-        setUserList(sortedArray)
-    }, []);
+        });
+        setUserList(sortedArray);
+        setPrevUserList(sortedArray);
+    };
 
     const getLogCount = (type, user_id) => {
         const filteredData = LogData.filter(item => item.user_id === user_id);
