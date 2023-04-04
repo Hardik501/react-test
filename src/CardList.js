@@ -36,13 +36,18 @@ const CardList = () => {
             });
             setUserList(sortedCards)
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+
+        {/* add this for fix netlify error
+            // eslint-disable-next-line react-hooks/exhaustive-deps
+        */}
     }, [sorting]);
 
 
     useEffect(() => {
         getUserData();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        {/* add this for fix netlify error
+            // eslint-disable-next-line react-hooks/exhaustive-deps
+        */}
     }, []);
 
     const getUserData = () => {
