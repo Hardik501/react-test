@@ -32,7 +32,7 @@ function CardList() {
             });
             setUserList(sortedCards)
         }
-    }, [sorting]);
+    }, [sorting, userList]);
 
 
     useEffect(() => {
@@ -50,7 +50,7 @@ function CardList() {
             }
         })
         setUserList(sortedArray)
-    });
+    }, []);
 
     const getLogCount = (type, user_id) => {
         const filteredData = LogData.filter(item => item.user_id === user_id);
