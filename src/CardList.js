@@ -36,7 +36,7 @@ const CardList = () => {
             });
             setUserList(sortedCards)
         }
-    }, [sorting]);
+    }, [sorting, prevUserList, userList]);
 
 
     useEffect(() => {
