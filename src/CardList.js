@@ -50,18 +50,18 @@ function CardList() {
             }
         })
         setUserList(sortedArray)
-    }, []);
+    });
 
     const getLogCount = (type, user_id) => {
-        const filteredData = LogData.filter(item => item.user_id == user_id);
+        const filteredData = LogData.filter(item => item.user_id === user_id);
 
-        return filteredData.filter(item => item.type == type).length;
+        return filteredData.filter(item => item.type === type).length;
     };
 
 
     const getChartData = (type, user_id) => {
-        const filteredData = LogData.filter(item => item.user_id == user_id);
-        const data = filteredData.filter(item => item.type == type);
+        const filteredData = LogData.filter(item => item.user_id === user_id);
+        const data = filteredData.filter(item => item.type === type);
 
         const dayCounts = data.reduce(function (result, entry) {
             var day = moment(entry.time).format("YYYY-MM-DD");
@@ -90,7 +90,7 @@ function CardList() {
 
 
     const getRevenue = (user_id) => {
-        const filteredData = LogData.filter(item => item.user_id == user_id);
+        const filteredData = LogData.filter(item => item.user_id === user_id);
         return filteredData.map(item => item.revenue).reduce((prev, next) => prev + next);
     };
 

@@ -9,7 +9,7 @@ function App() {
     <Router>
       <div>
         <Routes>
-          <Route exact path='/' element={<CardList />}></Route>
+          <Route exact path='/' element={<CardList/>}/>
         </Routes>
       </div>
     </Router>
