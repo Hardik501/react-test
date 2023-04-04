@@ -41,7 +41,7 @@ const CardList = () => {
 
     useEffect(() => {
         getUserData();
-    }, []);
+    });
 
     const getUserData = () => {
         const sortedArray = users.map(user => {
@@ -170,6 +170,6 @@ const CardList = () => {
             </div>
         </div>
     );
-}
+};
 
 export default CardList;
