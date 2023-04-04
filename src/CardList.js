@@ -36,12 +36,14 @@ const CardList = () => {
             });
             setUserList(sortedCards)
         }
-    }, [sorting, prevUserList, userList]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [sorting]);
 
 
     useEffect(() => {
         getUserData();
-    });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     const getUserData = () => {
         const sortedArray = users.map(user => {
